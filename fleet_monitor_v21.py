@@ -6,19 +6,19 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 ROOT=Path(__file__).resolve().parent; sys.path.insert(0,str(ROOT))
-from modules.monitoring import generate_sensor_batch
-from modules.v8_engine import add_batch_id, validate_sensor_frame
-from modules.v10_enterprise import score_enterprise, make_work_order_queue, compare_batches
-from modules.v11_validation import evaluate_synthetic_model
-from modules.signal_diagnostics import (generate_vibration_signal, calculate_spectrum,
+from monitoring import generate_sensor_batch
+from v8_engine import add_batch_id, validate_sensor_frame
+from v10_enterprise import score_enterprise, make_work_order_queue, compare_batches
+from v11_validation import evaluate_synthetic_model
+from signal_diagnostics import (generate_vibration_signal, calculate_spectrum,
     bearing_characteristic_frequencies, orbit_coordinates)
-from modules.advanced_diagnostics import (signal_features, envelope_spectrum,
+from advanced_diagnostics import (signal_features, envelope_spectrum,
     rotational_order_spectrum, spectral_band_energy)
-from modules.v17_rotor_lab import campbell_data, bode_unbalance_response, waterfall_spectra, validate_sensor_csv
-from modules.v18_fem_rotor import solve_rotor_modes, compare_experimental_modes
-from modules.v19_advanced_rotor import build_timoshenko_rotor, solve_rotor_campbell, critical_speed_crossings
-from modules.v20_bearing_response import apply_linearized_bearing_coefficients, synchronous_unbalance_response, stability_sweep
-from modules.v21_3d_atlas import build_3d_atlas
+from v17_rotor_lab import campbell_data, bode_unbalance_response, waterfall_spectra, validate_sensor_csv
+from v18_fem_rotor import solve_rotor_modes, compare_experimental_modes
+from v19_advanced_rotor import build_timoshenko_rotor, solve_rotor_campbell, critical_speed_crossings
+from v20_bearing_response import apply_linearized_bearing_coefficients, synchronous_unbalance_response, stability_sweep
+from v21_3d_atlas import build_3d_atlas
 
 st.set_page_config(page_title="Industrial AI Reliability Suite v21", layout="wide", page_icon="🏭")
 st.title("Industrial AI Reliability Suite | v21")

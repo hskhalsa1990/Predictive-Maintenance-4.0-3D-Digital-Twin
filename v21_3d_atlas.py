@@ -9,11 +9,11 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-from modules.signal_diagnostics import generate_vibration_signal, calculate_spectrum, bearing_characteristic_frequencies
-from modules.advanced_diagnostics import signal_features, envelope_spectrum, rotational_order_spectrum, spectral_band_energy
-from modules.v18_fem_rotor import solve_rotor_modes
-from modules.v19_advanced_rotor import build_timoshenko_rotor, solve_rotor_campbell
-from modules.v20_bearing_response import synchronous_unbalance_response, stability_sweep
+from signal_diagnostics import generate_vibration_signal, calculate_spectrum, bearing_characteristic_frequencies
+from advanced_diagnostics import signal_features, envelope_spectrum, rotational_order_spectrum, spectral_band_energy
+from v18_fem_rotor import solve_rotor_modes
+from v19_advanced_rotor import build_timoshenko_rotor, solve_rotor_campbell
+from v20_bearing_response import synchronous_unbalance_response, stability_sweep
 
 
 def _finish(fig, title, x, y, z):

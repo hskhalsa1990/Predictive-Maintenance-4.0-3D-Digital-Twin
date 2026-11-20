@@ -1,8 +1,8 @@
 import unittest
-from src.monitoring import generate_sensor_batch
-from src.v10_enterprise import score_enterprise
-from src.v11_validation import evaluate_synthetic_model
-from src.v21_3d_atlas import build_3d_atlas
+from monitoring import generate_sensor_batch
+from v10_enterprise import score_enterprise
+from v11_validation import evaluate_synthetic_model
+from v21_3d_atlas import build_3d_atlas
 
 class TestV21Complete3DAtlas(unittest.TestCase):
     @classmethod

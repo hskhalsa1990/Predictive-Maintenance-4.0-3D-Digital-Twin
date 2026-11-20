@@ -2,8 +2,8 @@
 from __future__ import annotations
 import numpy as np
 import pandas as pd
-from modules.v9_intelligence import health_index, detect_iqr_anomalies, train_synthetic_risk_model, predict_synthetic_risk
-from modules.v8_engine import trend_summary
+from v9_intelligence import health_index, detect_iqr_anomalies, train_synthetic_risk_model, predict_synthetic_risk
+from v8_engine import trend_summary
 
 FEATURES = ["rpm", "load_pct", "temperature_c", "vibration_rms"]
 

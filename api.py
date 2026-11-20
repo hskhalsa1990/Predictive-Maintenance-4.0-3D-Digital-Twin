@@ -3,7 +3,7 @@ import json, joblib, pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=Path(__file__).resolve().parent
 ART=ROOT/"artifacts"
 app=FastAPI(title="Predictive Maintenance 4.0 API",version="4.0.0")
 

@@ -3,7 +3,7 @@
 **Physics-Aware Industrial Digital Twin**  
 Mechanical Engineering × Vibration Diagnostics × Thermal Modeling × Machine Learning × 2D + 3D Visualization
 
-Flat GitHub-ready project with **real PNG diagrams** (3D + 2D + Bar charts) and interactive HTML.
+Flat GitHub-ready project (**no sub-folders**) with **real PNG diagrams** (3D + 2D + Bar charts) and interactive HTML, all in one directory.
 
 ---
 
@@ -16,83 +16,101 @@ pip install -r requirements.txt
 streamlit run fleet_monitor_v21.py
 ```
 
+Run tests: `python -m unittest test_v21_3d_atlas.py`  
+Regenerate interactive HTML: `python generate_diagrams.py`
+
+---
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[monitoring.py<br/>synthetic sensor batch] --> B[v8_engine / v10_enterprise<br/>health index + priority]
+    B --> C[v9_intelligence / v11_validation<br/>ML risk model]
+    D[signal_diagnostics / advanced_diagnostics<br/>FFT, envelope, orders] --> F
+    E[v16-v20 rotor modules<br/>FEM, Campbell, bearing response] --> F
+    C --> F[v21_3d_atlas.py<br/>28 3D diagrams]
+    F --> G[fleet_monitor_v21.py<br/>Streamlit dashboard]
+    C --> H[api.py<br/>FastAPI inference]
+```
+
 ---
 
 ## 3D Diagrams
 
 ### Fleet Health Digital Twin
-![Fleet Health](diagrams/01_fleet_health_digital_twin.png)
+![Fleet Health](01_fleet_health_digital_twin.png)
 
 ### ML Decision Space
-![ML Decision](diagrams/05_ml_decision_space.png)
+![ML Decision](05_ml_decision_space.png)
 
 ### Shaft Orbit
-![Shaft Orbit](diagrams/08_shaft_orbit.png)
+![Shaft Orbit](08_shaft_orbit.png)
 
 ### FFT Harmonic Map (3D)
-![FFT 3D](diagrams/09_fft_harmonic_map.png)
+![FFT 3D](09_fft_harmonic_map.png)
 
 ### STFT Spectrogram Surface
-![STFT](diagrams/10_stft_surface.png)
+![STFT](10_stft_surface.png)
 
 ### Thermal Hotspot Field
-![Thermal](diagrams/11_thermal_hotspot.png)
+![Thermal](11_thermal_hotspot.png)
 
 ### Rolling Bearing 3D Assembly
-![Bearing](diagrams/12_bearing_3d_assembly.png)
+![Bearing](12_bearing_3d_assembly.png)
 
 ### Condition-Indicator Trajectory
-![Trajectory](diagrams/15_condition_trajectory.png)
+![Trajectory](15_condition_trajectory.png)
 
 ### Spectral Band Energy
-![Spectral](diagrams/16_spectral_band_energy.png)
+![Spectral](16_spectral_band_energy.png)
 
 ### Gyroscopic Campbell Branches
-![Campbell](diagrams/17_campbell_branches.png)
+![Campbell](17_campbell_branches.png)
 
 ### Synchronous Unbalance Response
-![Unbalance](diagrams/25_unbalance_response.png)
+![Unbalance](25_unbalance_response.png)
 
 ### Rotor Stability Map
-![Stability](diagrams/26_stability_map.png)
+![Stability](26_stability_map.png)
 
 ---
 
 ## 2D Charts & Spectra
 
 ### FFT Spectrum with Harmonics
-![FFT 2D](diagrams/2d_fft_spectrum.png)
+![FFT 2D](2d_fft_spectrum.png)
 
 ### Envelope Spectrum (Bearing Fault)
-![Envelope](diagrams/2d_envelope_spectrum.png)
+![Envelope](2d_envelope_spectrum.png)
 
 ### Vibration RMS Trend
-![Vibration Trend](diagrams/2d_vibration_trend.png)
+![Vibration Trend](2d_vibration_trend.png)
 
 ### Temperature vs Vibration
-![Temp vs Vib](diagrams/2d_temp_vs_vibration.png)
+![Temp vs Vib](2d_temp_vs_vibration.png)
 
 ### Confusion Matrix
-![Confusion](diagrams/2d_confusion_matrix.png)
+![Confusion](2d_confusion_matrix.png)
 
 ---
 
 ## Bar Graphs
 
 ### Fleet Health Index by Machine
-![Health Bar](diagrams/bar_fleet_health.png)
+![Health Bar](bar_fleet_health.png)
 
 ### Feature Importance
-![Feature Importance](diagrams/bar_feature_importance.png)
+![Feature Importance](bar_feature_importance.png)
 
 ### Predicted vs Actual RUL
-![RUL](diagrams/bar_rul_comparison.png)
+![RUL](bar_rul_comparison.png)
 
 ### Maintenance Priority Distribution
-![Priority](diagrams/bar_priority_distribution.png)
+![Priority](bar_priority_distribution.png)
 
 ### Capability Growth Across Versions
-![Capability](diagrams/bar_version_capability.png)
+![Capability](bar_version_capability.png)
 
 ---
 
@@ -127,26 +145,28 @@ streamlit run fleet_monitor_v21.py
 | Bearing coefficients      | Kxx, Kxy, Kyx, Kyy, Cxx, Cyy…           | `input_demo.py` or Streamlit |
 | Sensor batch generator    | Vibration, temp, RPM, load               | `generate_sensor_batch()`   |
 | Rotor geometry            | Length, diameter, disk locations         | v18 / v19 modules           |
-| FastAPI inference         | Real-time risk prediction                | `uvicorn modules.api:app`   |
+| FastAPI inference         | Real-time risk prediction                | `uvicorn api:app`   |
 
 ---
 
-## Project Layout
+## Project Layout (flat — everything in one folder)
 
 ```
 .
-├── README.md                  ← this file (images embedded)
+├── README.md
 ├── V21_RELEASE_NOTES.md
 ├── requirements.txt
-├── fleet_monitor_v21.py       ← main dashboard
-├── input_demo.py              ← bearing + rotor input module
-├── generate_diagrams.py
-├── diagrams/                  ← all PNG + HTML
-│   ├── 01_...png / .html      (3D)
-│   ├── 2d_...png              (2D charts)
-│   └── bar_...png             (bar graphs)
-├── modules/                   ← source code
-└── tests/
+├── .gitignore
+├── fleet_monitor_v21.py       ← main Streamlit dashboard
+├── input_demo.py              ← bearing + rotor input demo
+├── generate_diagrams.py       ← regenerates HTML diagrams
+├── test_v21_3d_atlas.py       ← unit tests
+├── api.py                     ← FastAPI inference
+├── monitoring.py, signal_diagnostics.py, advanced_diagnostics.py
+├── v8_engine.py … v21_3d_atlas.py   ← analysis modules
+├── 01_…, 05_…, … 26_…  (.png + .html)   ← 3D diagrams
+├── 2d_….png                   ← 2D charts
+└── bar_….png                  ← bar graphs
 ```
 
 ---

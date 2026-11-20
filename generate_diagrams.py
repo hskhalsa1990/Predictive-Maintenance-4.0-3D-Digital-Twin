@@ -4,8 +4,7 @@ import numpy as np
 import plotly.graph_objects as go
 from pathlib import Path
 
-OUT = Path("diagrams")
-OUT.mkdir(exist_ok=True)
+OUT = Path(__file__).resolve().parent  # flat project: HTML written next to this script
 rng = np.random.default_rng(2026)
 
 def save(fig, name):
@@ -27,4 +26,4 @@ for band in colors:
 fig.update_layout(title="01 • Fleet Health Digital Twin",scene=dict(xaxis_title="Temperature (°C)",yaxis_title="Vibration RMS",zaxis_title="Health index"),height=500,margin=dict(l=0,r=0,t=40,b=0))
 save(fig,"01_fleet_health_digital_twin.html")
 
-print("All core diagrams present in diagrams/")
+print("Done: HTML diagrams written to project root")

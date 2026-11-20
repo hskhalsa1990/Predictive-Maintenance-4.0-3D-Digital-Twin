@@ -52,14 +52,14 @@ def rotational_order_spectrum(signal, sample_rate_hz: float, rpm: float):
     """Map FFT frequency bins to shaft orders; no tachometer resampling is implied."""
     if rpm <= 0:
         raise ValueError("rpm must be positive")
-    from modules.signal_diagnostics import calculate_spectrum
+    from signal_diagnostics import calculate_spectrum
     freq, amp = calculate_spectrum(signal, sample_rate_hz)
     return freq/(rpm/60.0), amp
 
 
 def spectral_band_energy(signal, sample_rate_hz: float, bands=None):
     """Compute normalized FFT energy in user-defined frequency bands."""
-    from modules.signal_diagnostics import calculate_spectrum
+    from signal_diagnostics import calculate_spectrum
     bands = bands or {"Low (0-50 Hz)": (0, 50), "Mid (50-200 Hz)": (50, 200), "High (200+ Hz)": (200, sample_rate_hz/2)}
     freq, amp = calculate_spectrum(signal, sample_rate_hz)
     power = amp**2

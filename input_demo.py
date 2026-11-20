@@ -29,4 +29,4 @@ if __name__ == "__main__":
     print("\nReceived inputs:")
     print("Bearing:", b)
     print("Rotor:", r)
-    print("These can be passed to modules.v20_bearing_response / v19_advanced_rotor")
+    print("These can be passed to v20_bearing_response / v19_advanced_rotor")
